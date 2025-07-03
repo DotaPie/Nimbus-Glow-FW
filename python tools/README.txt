@@ -1,0 +1,1 @@
+Some python scripts that helped me to create graphics and generate some HTML. Each has its own README.
