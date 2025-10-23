@@ -46,8 +46,8 @@ uint16_t numberOfLeds;
 uint16_t previousNumberOfLeds;
 
 // encoder globals
-RotaryEncoder encoder_1 = RotaryEncoder(RE_1_IN1_PIN, RE_1_IN2_PIN, RotaryEncoder::LatchMode::TWO03);
-RotaryEncoder encoder_2 = RotaryEncoder(RE_2_IN1_PIN, RE_2_IN2_PIN, RotaryEncoder::LatchMode::TWO03);
+RotaryEncoder encoder_1 = RotaryEncoder(RE_1_DT_PIN, RE_1_CLK_PIN, RotaryEncoder::LatchMode::TWO03);
+RotaryEncoder encoder_2 = RotaryEncoder(RE_2_DT_PIN, RE_2_CLK_PIN, RotaryEncoder::LatchMode::TWO03);
 long previous_encoder_1_position = 0; 
 long previous_encoder_2_position = 0;
 uint32_t encoder_1_switch_debounce_timer = 0;
@@ -373,14 +373,14 @@ void checkRotaryEncoderPosition_2()
 void setupRotaryEncoders()
 {
     CONSOLE("Rotary encoder #1: ")
-    attachInterrupt(digitalPinToInterrupt(RE_1_IN1_PIN), checkRotaryEncoderPosition_1, CHANGE);
-    attachInterrupt(digitalPinToInterrupt(RE_1_IN2_PIN), checkRotaryEncoderPosition_1, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(RE_1_DT_PIN), checkRotaryEncoderPosition_1, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(RE_1_CLK_PIN), checkRotaryEncoderPosition_1, CHANGE);
     pinMode(RE_1_SW_PIN, INPUT_PULLUP);
     CONSOLE_CRLF("OK")
 
     CONSOLE("Rotary encoder #2: ")
-    attachInterrupt(digitalPinToInterrupt(RE_2_IN1_PIN), checkRotaryEncoderPosition_2, CHANGE);
-    attachInterrupt(digitalPinToInterrupt(RE_2_IN2_PIN), checkRotaryEncoderPosition_2, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(RE_2_DT_PIN), checkRotaryEncoderPosition_2, CHANGE);
+    attachInterrupt(digitalPinToInterrupt(RE_2_CLK_PIN), checkRotaryEncoderPosition_2, CHANGE);
     pinMode(RE_2_SW_PIN, INPUT_PULLUP);
     CONSOLE_CRLF("OK")
 }
